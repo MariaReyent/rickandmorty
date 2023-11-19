@@ -8,17 +8,16 @@ function Home() {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [prev, setPrev] = useState(false);
-  const [next, setNext] = useState(false);
+
+  const isFirstPage = page === 1;
+  const isNextPage = page === data?.info?.pages;
 
   function handleNext() {
     setPage((prevCount) => prevCount + 1);
-    
   }
 
   function handlePrev() {
     setPage((prevCount) => prevCount - 1);
-    
   }
 
   useEffect(() => {
@@ -26,10 +25,8 @@ function Home() {
     getCharacters(page)
       .then((data) => {
         setData(data);
-        setPrev(!!data.info.prev);
-        setNext(!!data.info.next);
-         })
-.finally(() => setLoading(false));
+      })
+      .finally(() => setLoading(false));
   }, [page]);
 
   if (loading) {
@@ -41,10 +38,10 @@ function Home() {
       <Header />
       {<CharactersList character={data} />}
       <div className="container">
-        <button className="btn" onClick={handlePrev} disabled={!prev}>
+        <button className="btn" onClick={handlePrev} disabled={isFirstPage}>
           Previous
         </button>
-        <button className="btn" onClick={handleNext} disabled={!next}>
+        <button className="btn" onClick={handleNext} disabled={isNextPage}>
           Next
         </button>
       </div>
