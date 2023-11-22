@@ -1,13 +1,24 @@
-import { getCharacters } from "../api";
+import { getCharacters, getCharbyName } from "../api";
 import { useEffect, useState } from "react";
 import { Preloader } from "../components/Preloader";
 import { Header } from "../components/Header";
 import { CharactersList } from "../components/CharactersList";
+import { Search } from "../components/Search";
 
 function Home() {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setQuery(query);
+    if (!query) {
+      setPage(1);
+    }
+  };
+
+  const isEmpty = !loading && !data?.results?.length;
 
   const isFirstPage = page === 1;
   const isNextPage = page === data?.info?.pages;
@@ -22,21 +33,24 @@ function Home() {
 
   useEffect(() => {
     setLoading(true);
-    getCharacters(page)
+    getCharacters(page, searchQuery)
       .then((data) => {
         setData(data);
       })
       .finally(() => setLoading(false));
-  }, [page]);
+  }, [page, searchQuery]);
 
   if (loading) {
     return <Preloader />;
   }
 
+  console.log(data);
+  console.log(isEmpty);
   return (
     <>
       <Header />
-      {<CharactersList character={data} />}
+      <Search handleSearch={handleSearch} />
+      {isEmpty ? <div>No data</div> : <CharactersList character={data} />}
       <div className="container">
         <button className="btn" onClick={handlePrev} disabled={isFirstPage}>
           Previous

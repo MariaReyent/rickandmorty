@@ -1,14 +1,23 @@
 body {
   margin: 0;
+  padding: 0;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
  
 }
 .App{
   background-color: rgb(33, 131, 45);
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
 }
 
 code {
@@ -58,10 +67,12 @@ nav {
  }
 
  img{
-  transition: transform .4  s;
+  transition: transform .4s;
  }
 
  img:hover{
   transform: scale(1.1); 
  }
+
+
  
