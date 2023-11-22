@@ -25,19 +25,29 @@ function Search({ handleSearch }) {
       >
         Search Characters
       </Text>
-      <form onSubmit={onSubmit}>
+
+      <form onSubmit={onSubmit} className="form-container">
+        <img
+          className="icon"
+          alt=""
+          src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_close_48px-512.png"
+        ></img>
         <Input
           value={query}
           onChange={onChange}
-          //   color="yellow"
-          //   focusBorderColor="blue"
-          //   placeholder="Search"
-          //   backgroundColor="darkgreen"
-          //   width="400px"
-          //   marginBottom="12px"
-          //   marginLeft="10px"
+          color="white"
+          focusBorderColor="blue"
+          placeholder="Search"
+          backgroundColor="darkgreen"
+          width="400px"
+          marginBottom="12px"
+          marginLeft="10px"
+          paddingRight="2rem"
         />
-        <button type="submit">Submit</button>
+
+        <button type="submit" className="btn">
+          Submit
+        </button>
       </form>
     </>
   );
