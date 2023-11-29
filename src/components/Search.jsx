@@ -13,6 +13,17 @@ function Search({ handleSearch }) {
     handleSearch(query);
   };
 
+  const bt = (
+    <img
+      src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_close_48px-512.png"
+      alt=""
+    />
+  );
+
+  const handleClear = () => {
+    setQuery("");
+  };
+
   return (
     <>
       <Text
@@ -27,26 +38,26 @@ function Search({ handleSearch }) {
       </Text>
 
       <form onSubmit={onSubmit} className="form-container">
-        <img
-          className="icon"
-          alt=""
-          src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_close_48px-512.png"
-        ></img>
-        <Input
-          value={query}
-          onChange={onChange}
-          color="white"
-          focusBorderColor="blue"
-          placeholder="Search"
-          backgroundColor="darkgreen"
-          width="400px"
-          marginBottom="12px"
-          marginLeft="10px"
-          paddingRight="2rem"
-        />
+        <div className="input-wrapper">
+          <button onClick={handleClear} className="icon">
+            {bt}
+          </button>
+          <Input
+            value={query}
+            onChange={onChange}
+            color="white"
+            focusBorderColor="blue"
+            placeholder="Search"
+            backgroundColor="darkgreen"
+            width="400px"
+            marginBottom="12px"
+            marginLeft="10px"
+            paddingRight="2rem"
+          />
+        </div>
 
         <button type="submit" className="btn">
-          Submit
+          Search
         </button>
       </form>
     </>

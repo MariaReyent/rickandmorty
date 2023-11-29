@@ -22,6 +22,38 @@ const getCharbyName= async (name) => {
     }
 }
 
+const getSingleCharacter = async (id) => {
+    try {
+    const response = await fetch (`https://rickandmortyapi.com/api/character/${id}`);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch data. Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+
+    }
+    catch(error){
+       console.log("Error fetching data", error)
+       throw error
+    }
+}
+
+const getCharacterByGender = async(gender)=>{
+    try {
+        const response = await fetch (`https://rickandmortyapi.com/api/character/?gender=${gender}`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data. Status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    
+        }
+        catch(error){
+           console.log("Error fetching data", error)
+           throw error
+        }
+}
 
 
-export {getCharacters, getCharbyName}
+
+export {getCharacters, getCharbyName, getSingleCharacter, getCharacterByGender}

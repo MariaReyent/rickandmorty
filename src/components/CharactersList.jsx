@@ -5,7 +5,7 @@ function CharactersList({ character }) {
   return (
     <Grid templateColumns="repeat(4, 1fr)" gap={6}>
       {character.results.map((char) => (
-        <Cards key={char.id} name={char.name} image={char.image} />
+        <Cards key={char.id} name={char.name} image={char.image} id={char.id} gender={char.gender} />
       ))}
     </Grid>
   );
